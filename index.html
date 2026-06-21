@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sumanth S Adiga — Generative AI Engineer</title>
+<meta name="description" content="Portfolio of Sumanth S Adiga — Generative AI Engineer building RAG, agentic, and applied ML systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1220;
+    --surface:#121A2B;
+    --surface-2:#172136;
+    --line:#23304A;
+    --paper:#E7ECF5;
+    --muted:#8B97AC;
+    --cyan:#5EEAD4;
+    --violet:#9B8CFF;
+    --amber:#F4B860;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  ::selection{background:var(--cyan);color:var(--ink)}
+  :focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(11,18,32,0.85);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px}
+  .nav-name .dot{color:var(--cyan)}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links li{margin-right:28px}
+  .nav-links li:last-child{margin-right:0}
+  .nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .15s}
+  .nav-links a:hover{color:var(--paper)}
+  .nav-cta{
+    font-family:'JetBrains Mono',monospace;font-size:13px;
+    background:var(--cyan);color:var(--ink);padding:8px 16px;
+    border-radius:6px;text-decoration:none;font-weight:500;
+  }
+  @media (max-width:680px){ .nav-links{display:none} }
+
+  /* HERO */
+  .hero{padding:148px 0 90px;position:relative;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;top:-200px;right:-160px;width:520px;height:520px;
+    background:radial-gradient(circle, rgba(94,234,212,0.10) 0%, rgba(155,140,255,0.06) 45%, transparent 70%);
+    pointer-events:none;
+  }
+  .terminal{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;color:var(--cyan);
+    background:var(--surface);border:1px solid var(--line);border-radius:8px;
+    padding:16px 18px;max-width:480px;margin-bottom:32px;
+    min-height:92px;
+  }
+  .terminal .line{color:var(--muted)}
+  .terminal .line .k{color:var(--violet)}
+  .terminal .cursor{display:inline-block;width:7px;height:14px;background:var(--cyan);
+    vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){ .cursor{animation:none} }
+
+  .hero h1{font-size:52px;font-weight:700;line-height:1.08;max-width:680px}
+  .hero h1 span{color:var(--cyan)}
+  .hero p.lead{margin-top:18px;font-size:18px;color:var(--muted);max-width:540px}
+
+  .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 20px;border-radius:7px;font-size:14px;font-weight:500;
+    text-decoration:none;transition:transform .12s, border-color .12s;
+  }
+  .btn-primary{background:var(--paper);color:var(--ink)}
+  .btn-primary:hover{transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--paper)}
+  .btn-ghost:hover{border-color:var(--cyan)}
+
+  .stat-row{display:flex;gap:36px;margin-top:56px;flex-wrap:wrap}
+  .stat-num{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:600;color:var(--paper)}
+  .stat-label{font-size:12.5px;color:var(--muted);max-width:160px;margin-top:2px}
+
+  /* SECTION shared */
+  section{padding:80px 0}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);
+    letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;
+  }
+  .section-title{font-size:30px;font-weight:600;margin-bottom:14px}
+  .section-sub{color:var(--muted);max-width:560px;margin-bottom:42px;font-size:15.5px}
+
+  /* ABOUT */
+  #about{border-top:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px}
+  @media (max-width:780px){ .about-grid{grid-template-columns:1fr} }
+  .about-grid p{color:var(--muted);font-size:15.5px;margin-bottom:16px}
+  .timeline{border-left:1px solid var(--line);padding-left:22px;display:flex;flex-direction:column;gap:22px}
+  .tl-item .tl-where{font-weight:600;font-size:14.5px}
+  .tl-item .tl-what{color:var(--muted);font-size:13.5px;margin-top:2px}
+  .tl-item .tl-when{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--cyan);margin-top:4px}
+
+  /* PROJECTS */
+  #projects{border-top:1px solid var(--line)}
+  .project{
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;
+    padding:30px 32px;margin-bottom:22px;border-top:3px solid var(--c, var(--cyan));
+    transition:border-color .15s;
+  }
+  .project:hover{border-color:var(--line)}
+  .project-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  .project-cat{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--c, var(--cyan));
+    text-transform:uppercase;letter-spacing:.06em;
+  }
+  .project h3{font-size:20px;margin-top:4px}
+  .project-when{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+  .project p.desc{color:var(--muted);font-size:14.5px;margin:14px 0 18px;max-width:680px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--paper);
+    background:var(--surface-2);border:1px solid var(--line);
+    padding:4px 10px;border-radius:5px;
+  }
+  .project-links{display:flex;gap:18px}
+  .project-links a{font-size:13.5px;color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;margin-right:18px}
+  .project-links a:last-child{margin-right:0}
+  .project-links a:hover{border-color:var(--cyan);color:var(--cyan)}
+
+  /* SKILLS */
+  #skills{border-top:1px solid var(--line)}
+  .skill-group{margin-bottom:26px}
+  .skill-group h4{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:9px}
+  .skill-tag{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    border:1px solid var(--line);padding:6px 12px;border-radius:6px;color:var(--paper);
+  }
+
+  /* CERTS */
+  #certs{border-top:1px solid var(--line)}
+  .cert-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .cert-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 24px;border-bottom:1px solid var(--line);
+    background:var(--surface);
+  }
+  .cert-row:last-child{border-bottom:none}
+  .cert-name{font-size:14.5px;font-weight:500}
+  .cert-issuer{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .cert-verify{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);
+    text-decoration:none;white-space:nowrap;margin-left:18px;
+  }
+  .cert-verify:hover{text-decoration:underline}
+
+  /* CONTACT / FOOTER */
+  #contact{border-top:1px solid var(--line);text-align:center}
+  #contact h2{font-size:34px;margin-bottom:14px}
+  #contact p{color:var(--muted);max-width:440px;margin:0 auto 32px}
+  .contact-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+  footer{padding:32px 0;border-top:1px solid var(--line);text-align:center}
+  footer p{font-size:12.5px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">sumanth<span class="dot">.</span>adiga</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certificates</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="terminal mono" id="termBox">
+      <div class="line">&gt; loading_profile<span class="cursor"></span></div>
+    </div>
+    <h1>Generative AI Engineer building <span>retrieval, agentic,</span> and applied ML systems.</h1>
+    <p class="lead">I'm Sumanth S Adiga — a Computer Science graduate from VVIET focused on RAG pipelines, multi-agent orchestration, and shipping LLM-powered tools end to end.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">View Projects</a>
+      <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+      <a class="btn btn-ghost" href="https://github.com/DP403" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="stat-row">
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">shipped LLM &amp; ML projects, end to end</div>
+      </div>
+      <div>
+        <div class="stat-num">88.46%</div>
+        <div class="stat-label">model accuracy, peer-reviewed &amp; published</div>
+      </div>
+      <div>
+        <div class="stat-num">AWS</div>
+        <div class="stat-label">Certified Cloud Practitioner</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">// about</div>
+    <h2 class="section-title">Background</h2>
+    <div class="about-grid">
+      <div>
+        <p>I build Generative AI systems that go beyond demos — retrieval-augmented interfaces, multi-agent orchestration, and applied deep learning, each shipped as a working application rather than a notebook experiment.</p>
+        <p>During my internship as an AI Developer at SuprMentr Technologies, I designed prompt frameworks and LLM reasoning pipelines — applying Chain-of-Thought and function-calling techniques to automate data synthesis — and deployed ML architectures into production-ready inference services on AWS and Kubernetes.</p>
+        <p>Outside of LLM work, I co-authored a peer-reviewed paper on a CNN/ResNet50 model for plant disease classification, published in IJCSPUB — the same rigor I bring to evaluating, not just building, GenAI systems.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-where">B.Tech, Computer Science Engineering</div>
+          <div class="tl-what">Vidya Vikas Institute of Engineering &amp; Technology · 8.195 CGPA</div>
+          <div class="tl-when">DEC 2022 — APR 2026</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-where">AI Developer Intern</div>
+          <div class="tl-what">SuprMentr Technologies Private Limited</div>
+          <div class="tl-when">FEB 2026 — MAY 2026</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-where">2nd PUC — Science (PCMCS)</div>
+          <div class="tl-what">PACE UM PU College · 91.17%</div>
+          <div class="tl-when">2021 — 2022</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-where">10th Grade</div>
+          <div class="tl-what">Sri Ramakrishna Vidyanikethna School · 95.2%</div>
+          <div class="tl-when">2019 — 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">// projects</div>
+    <h2 class="section-title">Selected work</h2>
+    <p class="section-sub">Three shipped systems, spanning retrieval, agentic orchestration, and applied computer vision.</p>
+
+    <div class="project" style="--c:var(--cyan)">
+      <div class="project-head">
+        <div>
+          <div class="project-cat">Retrieval &middot; RAG</div>
+          <h3>Smart Document Analyzer</h3>
+        </div>
+        <div class="project-when">APR — MAY 2026</div>
+      </div>
+      <p class="desc">A full-stack, decoupled RAG interface using LangChain for LLM orchestration and prompt chaining, with a Flask REST API and JavaScript front end for natural-language PDF querying. Semantic retrieval runs on FAISS vector embeddings, with an MD5-hashing cache layer for efficiency and python-dotenv for credential security.</p>
+      <div class="tags">
+        <span class="tag">LangChain</span><span class="tag">FAISS</span><span class="tag">Flask</span><span class="tag">RAG</span><span class="tag">Python</span><span class="tag">JavaScript</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/DP403/smartdocumentanalzer" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project" style="--c:var(--violet)">
+      <div class="project-head">
+        <div>
+          <div class="project-cat">Agentic &middot; Multi-Agent</div>
+          <h3>CrewAI-Job-Search-Orchestrator</h3>
+        </div>
+        <div class="project-when">FEB — MAR 2025</div>
+      </div>
+      <p class="desc">An autonomous multi-agent recruitment system built on CrewAI: a Senior Job Researcher agent and a Resume &amp; Profile Strategist agent, powered by the Gemini 2.5-Flash API, collaborate to research job listings and generate tailored, profile-matched cover letters.</p>
+      <div class="tags">
+        <span class="tag">CrewAI</span><span class="tag">Gemini API</span><span class="tag">Agentic Workflows</span><span class="tag">Python</span><span class="tag">Prompt Engineering</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/DP403/CrewAI-Job-Search-Orchestrator" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project" style="--c:var(--amber)">
+      <div class="project-head">
+        <div>
+          <div class="project-cat">Applied ML &middot; Computer Vision</div>
+          <h3>Arecanut Plant Disease Detection &amp; Classification</h3>
+        </div>
+        <div class="project-when">AUG 2025 — JAN 2026</div>
+      </div>
+      <p class="desc">An end-to-end deep learning web app using Flask and a custom ResNet50/CNN architecture, automating multi-class classification across 9 crop states with 88.46% accuracy. Co-authored peer-reviewed research published in the IJCSPUB journal.</p>
+      <div class="tags">
+        <span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">ResNet50</span><span class="tag">CNN</span><span class="tag">Flask</span><span class="tag">Published Research</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/DP403/Arecanut-Disease-Detection-CNN" target="_blank" rel="noopener">View on GitHub →</a>
+        <a href="https://rjpn.org/ijcspub/papers/IJCSP25D1101.pdf" target="_blank" rel="noopener">Read the Paper →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">// skills</div>
+    <h2 class="section-title">Stack</h2>
+    <div class="skill-group">
+      <h4>AI / LLM Engineering</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Agentic Workflows</span><span class="skill-tag">LangChain</span><span class="skill-tag">LangGraph</span><span class="skill-tag">RAG Pipelines</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">LlamaIndex</span><span class="skill-tag">FAISS</span><span class="skill-tag">Gemini API</span><span class="skill-tag">Hugging Face</span><span class="skill-tag">LLM Observability</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Software Development</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">FastAPI</span><span class="skill-tag">Flask</span><span class="skill-tag">JavaScript (ES6+)</span><span class="skill-tag">Python</span><span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span><span class="skill-tag">React.js</span><span class="skill-tag">Java</span><span class="skill-tag">C++</span><span class="skill-tag">SQL</span><span class="skill-tag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>DevOps &amp; Cloud</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Docker</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">CI/CD</span><span class="skill-tag">Postman</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="eyebrow">// certificates</div>
+    <h2 class="section-title">Verified credentials</h2>
+    <div class="cert-list">
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">AWS Certified Cloud Practitioner</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+        <a class="cert-verify" href="https://drive.google.com/file/d/1AOpCVUOrE0oPtq07DjLkdnDYP3OistRo/view?usp=sharing" target="_blank" rel="noopener">View →</a>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">API Testing Learning Path</div>
+          <div class="cert-issuer">Postman Academy · June 2026</div>
+        </div>
+        <a class="cert-verify" href="https://verify.skilljar.com/c/ccmkxxx4edbj" target="_blank" rel="noopener">Verify →</a>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Java SpringBoot Certificate</div>
+          <div class="cert-issuer">TestDome</div>
+        </div>
+        <a class="cert-verify" href="https://www.testdome.com/certificates/6f7100a650804b969e6eae2b71032a12" target="_blank" rel="noopener">Verify →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">// contact</div>
+    <h2>Let's build something.</h2>
+    <p>Open to Generative AI, AI, and ML Engineer roles in Bengaluru and across Karnataka.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:sumanthadiga003@gmail.com">sumanthadiga003@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+917019754312">+91 7019754312</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/sumanth-s-adiga-84260930a" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/DP403" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Sumanth S Adiga — Shimoga, Karnataka, India</p>
+</footer>
+
+<script>
+  // Terminal boot-sequence — respects prefers-reduced-motion
+  const lines = [
+    "loading_profile",
+    "role: Generative AI Engineer",
+    "stack: LangChain · RAG · CrewAI · FAISS",
+    "status: open to opportunities ✓"
+  ];
+  const box = document.getElementById('termBox');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function renderStatic(){
+    box.innerHTML = lines.map(l => `<div class="line">&gt; ${l}</div>`).join('');
+  }
+
+  if (reduced) {
+    renderStatic();
+  } else {
+    let li = 0;
+    function typeLine(){
+      if (li >= lines.length){ return; }
+      const text = lines[li];
+      let ci = 0;
+      const div = document.createElement('div');
+      div.className = 'line';
+      box.appendChild(div);
+      if (li === 0) box.innerHTML = ''; // clear placeholder on first run
+      box.appendChild(div);
+      const interval = setInterval(() => {
+        div.innerHTML = '&gt; ' + text.slice(0, ci+1) + '<span class="cursor"></span>';
+        ci++;
+        if (ci >= text.length){
+          clearInterval(interval);
+          div.innerHTML = '&gt; ' + text;
+          li++;
+          setTimeout(typeLine, 220);
+        }
+      }, 22);
+    }
+    typeLine();
+  }
+</script>
+
+</body>
+</html>
